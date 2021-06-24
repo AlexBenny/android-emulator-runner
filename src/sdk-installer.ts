@@ -51,7 +51,7 @@ export async function installAndroidSdk(apiLevel: number, target: string, arch: 
   await exec.exec(`sh -c \\"sdkmanager --install 'build-tools;${BUILD_TOOLS_VERSION}' platform-tools 'platforms;android-${apiLevel}' > /dev/null"`);
   if (emulatorBuild) {
     console.log(`Installing emulator build ${emulatorBuild}.`);
-    await exec.exec(`curl -fo emulator.zip https://dl.google.com/android/repository/emulator-${isOnMac ? 'darwin' : 'linux'}-${emulatorBuild}.zip`);
+    await exec.exec(`curl -fo emulator.zip https://dl.google.com/android/repository/emulator-${isOnMac ? 'darwin_x64' : 'linux_x64'}-${emulatorBuild}.zip`);
     await io.rmRF(`${process.env.ANDROID_SDK_ROOT}/emulator`);
     await exec.exec(`unzip -q emulator.zip -d ${process.env.ANDROID_SDK_ROOT}`);
     await io.rmRF('emulator.zip');
